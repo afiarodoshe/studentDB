@@ -43,7 +43,7 @@ func (studentservice Studentservice) Delete(email string) error {
 	return err
 }
 
-//Find user
+//Find student
 func (studentservice Studentservice) Find(student *model.Student) (*model.Student, error) {
 	conn := config.GetConnection()
 	defer conn.Session.Close()
@@ -57,7 +57,7 @@ func (studentservice Studentservice) Find(student *model.Student) (*model.Studen
 	return doc, nil
 }
 
-//Find user from email
+//Find student from email
 func (studentservice Studentservice) FindByEmail(email string) (*model.Student, error) {
 	conn := config.GetConnection()
 	defer conn.Session.Close()

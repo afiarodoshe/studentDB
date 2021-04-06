@@ -1,9 +1,8 @@
 package routers
 
 import (
-	"studentDB.go/pkg/db/controller"
-
 	"studentDB.go/middlewares"
+	"studentDB.go/pkg/db/controller"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,6 +17,7 @@ func setAuthRoute(router *gin.Engine) {
 	authGroup.GET("/profile", authController.Profile)
 
 }
+
 
 // InitRoute ..
 func InitRoute() *gin.Engine {

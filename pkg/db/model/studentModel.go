@@ -12,10 +12,12 @@ type Student struct {
 	Email              string `idx:"{email},unique" json:"email" binding:"required"`
 	Password           string `json:"password" binding:"required"`
 	Name               string `json:"name"`
+	Status             string `json:"status" bson:"status"`
 	// CreatedAt          *time.Time
 	// UpdatedAt          *time.Time
 	VerifiedAt *time.Time
 }
+
 //GetJwtToken returns jwt token with student email claims
 func (student *Student) GetJwtToken() (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{

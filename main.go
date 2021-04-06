@@ -9,4 +9,5 @@ func main() {
 	router := routers.InitRoute()
 	port := utils.EnvVar("PORT", "")
 	router.Run(port)
+
 }

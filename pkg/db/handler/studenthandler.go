@@ -16,7 +16,6 @@ type Studentservice struct{}
 func (studentservice Studentservice) Create(student *model.Student) error {
 	conn := config.GetConnection()
 	defer conn.Session.Close()
-	student.Status= "V"
 	if !isEmailValid(student.Email) {
 		return errors.New("InvalidEmail")
 	}
@@ -39,7 +38,8 @@ func (studentservice Studentservice) Delete(email string) error {
 	student, _ := studentservice.FindByEmail(email)
 	conn := config.GetConnection()
 	defer conn.Session.Close()
-	err := student.Remove()
+	doc := mogo.NewDoc(model.Student{}).(*model.Student)
+	err := doc.FindOne(bson.M{"email": student.Email}, doc)
 	return err
 }
 
@@ -66,8 +66,6 @@ func (studentservice Studentservice) FindByEmail(email string) (*model.Student, 
 	student.Email = email
 	return studentservice.Find(student)
 }
-
-
 
 var emailRegex = regexp.MustCompile("^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
 

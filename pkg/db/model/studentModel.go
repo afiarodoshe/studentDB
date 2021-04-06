@@ -12,7 +12,6 @@ type Student struct {
 	Email              string `idx:"{email},unique" json:"email" binding:"required"`
 	Password           string `json:"password" binding:"required"`
 	Name               string `json:"name"`
-	Status             string `json:"status" bson:"status"`
 	// CreatedAt          *time.Time
 	// UpdatedAt          *time.Time
 	VerifiedAt *time.Time

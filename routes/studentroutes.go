@@ -16,8 +16,8 @@ func setAuthRoute(router *gin.Engine) {
 	authGroup.Use(middlewares.Authentication())
 	authGroup.GET("/profile", authController.Profile)
 
-}
 
+}
 
 // InitRoute ..
 func InitRoute() *gin.Engine {
